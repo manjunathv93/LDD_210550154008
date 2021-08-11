@@ -17,25 +17,22 @@ module_param(operand, charp, S_IRUSR|S_IWUSR);
 static int __init hello_world_init(void)
 {
         printk("operand = %s \n",operand);
-	switch(operand)
+	if(!strcmp(operand,"add"))
 	{
-		case "add":
-			printk("Addition = %d",(a+b));
-			break;
-		case "sub":
-			printk("Subtraction = %d",(a-b));
-			break;
-		case "mul":
-			printk("Multiplication = %d",(a*b));
-			break;
-		case "div":
-			printk("Division = %d",(a/b));
-			break;
-		default:
-			printk("Addition = %d",(a+b));	
-			break;
+		printk("Addition = %d",(a+b));
 	}
-
+	else if(!strcmp(operand,"sub"))
+	{
+		printk("Subtraction = %d",(a-b));
+	}
+	else if(!strcmp(operand,"mul"))
+	{	
+		printk("Multiplication = %d",(a*b));
+	}
+	else if(!strcmp(operand,"div"))
+	{	
+		printk("Division = %d",(a/b));
+	}
         printk("Kernel Module is Inserted Successfully...\n");
     return 0;
 }
