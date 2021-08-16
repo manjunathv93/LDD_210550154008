@@ -131,7 +131,7 @@ static int __init my_driver_init(void)
     if((cdev_add(&my_cdev,dev,1)) < 0)
 	{
         printk(KERN_INFO "cannot add device to the system\n");
-       // goto r_class;
+      
 	unregister_chrdev_region(dev,1);
         return -1;
         }
@@ -140,7 +140,7 @@ static int __init my_driver_init(void)
         if((dev_class = class_create(THIS_MODULE,"my_class")) == NULL)
 	{
             printk(KERN_INFO "Cannot create the struct class\n");
-           // goto r_class;
+           
 	unregister_chrdev_region(dev,1);
         return -1;
         }
@@ -149,15 +149,14 @@ static int __init my_driver_init(void)
         if((device_create(dev_class,NULL,dev,NULL,"my_device")) == NULL)
 	{
             printk(KERN_INFO "Cannot create the Device 1\n");
-            //goto r_device;
+            
 		class_destroy(dev_class);
         }
         printk(KERN_INFO "Device Driver is Inserted...\n");
     return 0;
 
-//r_device:
         
-//r_class:
+
         
 }
 
